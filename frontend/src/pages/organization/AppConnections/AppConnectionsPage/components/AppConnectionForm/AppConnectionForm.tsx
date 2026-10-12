@@ -77,6 +77,7 @@ import { OktaConnectionForm } from "./OktaConnectionForm";
 import { OnaConnectionForm } from "./OnaConnectionForm";
 import { OpenAIConnectionForm } from "./OpenAIConnectionForm";
 import { OpenRouterConnectionForm } from "./OpenRouterConnectionForm";
+import { OpteamaxConnectionForm } from "./OpteamaxConnectionForm";
 import { OracleDBConnectionForm } from "./OracleDBConnectionForm";
 import { OVHConnectionForm } from "./OVHConnectionForm";
 import { PostgresConnectionForm } from "./PostgresConnectionForm";
@@ -280,6 +281,8 @@ const CreateForm = ({ app, onComplete, projectId, projectType }: CreateFormProps
         return <DNSMadeEasyConnectionForm onSubmit={onSubmit} />;
       case AppConnection.UltraDNS:
         return <UltraDNSConnectionForm onSubmit={onSubmit} />;
+      case AppConnection.Opteamax:
+        return <OpteamaxConnectionForm onSubmit={onSubmit} />;
       case AppConnection.Spacelift:
         return <SpaceliftConnectionForm onSubmit={onSubmit} />;
       case AppConnection.AzureDNS:
@@ -581,6 +584,8 @@ const UpdateForm = ({ appConnection, onComplete }: UpdateFormProps) => {
         return <DNSMadeEasyConnectionForm onSubmit={onSubmit} appConnection={appConnection} />;
       case AppConnection.UltraDNS:
         return <UltraDNSConnectionForm onSubmit={onSubmit} appConnection={appConnection} />;
+      case AppConnection.Opteamax:
+        return <OpteamaxConnectionForm onSubmit={onSubmit} appConnection={appConnection} />;
       case AppConnection.Spacelift:
         return <SpaceliftConnectionForm onSubmit={onSubmit} appConnection={appConnection} />;
       case AppConnection.AzureDNS:

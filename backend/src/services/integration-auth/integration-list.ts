@@ -125,7 +125,8 @@ export enum IntegrationUrls {
   DNS_MADE_EASY_API_URL = "https://api.dnsmadeeasy.com",
   DNS_MADE_EASY_SANDBOX_API_URL = "https://api.sandbox.dnsmadeeasy.com",
   ULTRADNS_API_URL = "https://api.ultradns.com",
-  ULTRADNS_TEST_API_URL = "https://test-api.ultradns.com"
+  ULTRADNS_TEST_API_URL = "https://test-api.ultradns.com",
+  OPTEAMAX_API_URL = "https://api.opteam.ax/api/v2"
 }
 
 export const getIntegrationOptions = async () => {

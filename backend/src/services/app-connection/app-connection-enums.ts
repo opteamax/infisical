@@ -34,6 +34,7 @@ export enum AppConnection {
   Cloudflare = "cloudflare",
   DNSMadeEasy = "dns-made-easy",
   UltraDNS = "ultradns",
+  Opteamax = "opteamax",
   Zabbix = "zabbix",
   Railway = "railway",
   Bitbucket = "bitbucket",

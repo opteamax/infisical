@@ -62,6 +62,7 @@ import { TOktaConnection } from "./okta-connection";
 import { TOnaConnection } from "./ona-connection";
 import { TOpenAIConnection } from "./open-ai-connection";
 import { TOpenRouterConnection } from "./open-router-connection";
+import { TOpteamaxConnection } from "./opteamax-connection";
 import { TOracleDBConnection } from "./oracledb-connection";
 import { TOvhConnection } from "./ovh-connection";
 import { TPostgresConnection } from "./postgres-connection";
@@ -149,6 +150,7 @@ export * from "./okta-connection";
 export * from "./ona-connection";
 export * from "./open-ai-connection";
 export * from "./open-router-connection";
+export * from "./opteamax-connection";
 export * from "./oracledb-connection";
 export * from "./ovh-connection";
 export * from "./postgres-connection";
@@ -225,6 +227,7 @@ export type TAppConnection =
   | TChefConnection
   | TDNSMadeEasyConnection
   | TUltraDNSConnection
+  | TOpteamaxConnection
   | TAzureDNSConnection
   | TSshConnection
   | TDbtConnection

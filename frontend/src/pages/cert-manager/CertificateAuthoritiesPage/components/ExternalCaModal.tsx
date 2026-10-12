@@ -40,6 +40,7 @@ import {
 } from "@app/hooks/api/appConnections/digicert";
 import { useDNSMadeEasyConnectionListZones } from "@app/hooks/api/appConnections/dns-made-easy";
 import { AppConnection } from "@app/hooks/api/appConnections/enums";
+import { useOpteamaxConnectionListZones } from "@app/hooks/api/appConnections/opteamax";
 import { usePowerDnsConnectionListZones } from "@app/hooks/api/appConnections/powerdns";
 import { useUltraDNSConnectionListZones } from "@app/hooks/api/appConnections/ultradns";
 import {
@@ -425,6 +426,11 @@ export const ExternalCaModal = ({ popUp, handlePopUpToggle }: Props) => {
       enabled: caType === CaType.ACME
     });
 
+  const { data: availableOpteamaxConnections, isPending: isOpteamaxPending } =
+    useListAvailableAppConnections(AppConnection.Opteamax, currentProject.id, {
+      enabled: caType === CaType.ACME
+    });
+
   const { data: availableAzureConnections, isPending: isAzurePending } =
     useListAvailableAppConnections(AppConnection.AzureADCS, currentProject.id, {
       enabled: caType === CaType.AZURE_AD_CS
@@ -484,7 +490,8 @@ export const ExternalCaModal = ({ popUp, handlePopUpToggle }: Props) => {
       ...(availableAzureDNSConnections || []),
       ...(availablePowerDnsConnections || []),
       ...(availableGcpConnections || []),
-      ...(availableUltraDNSConnections || [])
+      ...(availableUltraDNSConnections || []),
+      ...(availableOpteamaxConnections || [])
     ];
   }, [
     caType,
@@ -495,6 +502,7 @@ export const ExternalCaModal = ({ popUp, handlePopUpToggle }: Props) => {
     availablePowerDnsConnections,
     availableGcpConnections,
     availableUltraDNSConnections,
+    availableOpteamaxConnections,
     availableAzureConnections,
     availableAdcsConnections,
     availableAwsConnections,
@@ -519,6 +527,8 @@ export const ExternalCaModal = ({ popUp, handlePopUpToggle }: Props) => {
         return availableGcpConnections || [];
       case AcmeDnsProvider.UltraDNS:
         return availableUltraDNSConnections || [];
+      case AcmeDnsProvider.Opteamax:
+        return availableOpteamaxConnections || [];
       default:
         return [];
     }
@@ -530,7 +540,8 @@ export const ExternalCaModal = ({ popUp, handlePopUpToggle }: Props) => {
     availableAzureDNSConnections,
     availablePowerDnsConnections,
     availableGcpConnections,
-    availableUltraDNSConnections
+    availableUltraDNSConnections,
+    availableOpteamaxConnections
   ]);
 
   const isPending =
@@ -540,7 +551,8 @@ export const ExternalCaModal = ({ popUp, handlePopUpToggle }: Props) => {
       isAzureDNSPending ||
       isPowerDnsPending ||
       isGcpPending ||
-      isUltraDNSPending) &&
+      isUltraDNSPending ||
+      isOpteamaxPending) &&
       caType === CaType.ACME) ||
     (isAzurePending && caType === CaType.AZURE_AD_CS) ||
     (isAdcsPending && caType === CaType.ADCS) ||
@@ -579,6 +591,11 @@ export const ExternalCaModal = ({ popUp, handlePopUpToggle }: Props) => {
       enabled: dnsProvider === AcmeDnsProvider.UltraDNS && !!dnsAppConnection.id
     });
 
+  const { data: opteamaxZones = [], isPending: isOpteamaxZonesPending } =
+    useOpteamaxConnectionListZones(dnsAppConnection.id, {
+      enabled: dnsProvider === AcmeDnsProvider.Opteamax && !!dnsAppConnection.id
+    });
+
   const zonesByDnsProvider: Partial<
     Record<AcmeDnsProvider, { zones: TAcmeDnsZone[]; isPending: boolean }>
   > = {
@@ -589,7 +606,8 @@ export const ExternalCaModal = ({ popUp, handlePopUpToggle }: Props) => {
     },
     [AcmeDnsProvider.AzureDNS]: { zones: azureDnsZones, isPending: isAzureDNSZonesPending },
     [AcmeDnsProvider.PowerDns]: { zones: powerDnsZones, isPending: isPowerDnsZonesPending },
-    [AcmeDnsProvider.UltraDNS]: { zones: ultraDNSZones, isPending: isUltraDNSZonesPending }
+    [AcmeDnsProvider.UltraDNS]: { zones: ultraDNSZones, isPending: isUltraDNSZonesPending },
+    [AcmeDnsProvider.Opteamax]: { zones: opteamaxZones, isPending: isOpteamaxZonesPending }
   };
 
   const { zones = [], isPending: isZonesPending = false } =

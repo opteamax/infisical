@@ -197,6 +197,10 @@ import {
   SanitizedOpenRouterConnectionSchema
 } from "@app/services/app-connection/open-router";
 import { OpenAIConnectionListItemSchema, SanitizedOpenAIConnectionSchema } from "@app/services/app-connection/openai";
+import {
+  OpteamaxConnectionListItemSchema,
+  SanitizedOpteamaxConnectionSchema
+} from "@app/services/app-connection/opteamax/opteamax-connection-schema";
 import { OvhConnectionListItemSchema, SanitizedOvhConnectionSchema } from "@app/services/app-connection/ovh";
 import {
   PostgresConnectionListItemSchema,
@@ -329,6 +333,7 @@ const SanitizedAppConnectionSchema = z.union([
   ...SanitizedChefConnectionSchema.options,
   ...SanitizedDNSMadeEasyConnectionSchema.options,
   ...SanitizedUltraDNSConnectionSchema.options,
+  ...SanitizedOpteamaxConnectionSchema.options,
   ...SanitizedAzureDnsConnectionSchema.options,
   ...SanitizedOctopusDeployConnectionSchema.options,
   ...SanitizedSmbConnectionSchema.options,
@@ -421,6 +426,7 @@ const AppConnectionOptionsSchema = z.discriminatedUnion("app", [
   ChefConnectionListItemSchema,
   DNSMadeEasyConnectionListItemSchema,
   UltraDNSConnectionListItemSchema,
+  OpteamaxConnectionListItemSchema,
   AzureDnsConnectionListItemSchema,
   OctopusDeployConnectionListItemSchema,
   SmbConnectionListItemSchema,

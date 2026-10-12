@@ -222,6 +222,10 @@ export type TUltraDNSConnectionOption = TAppConnectionOptionBase & {
   app: AppConnection.UltraDNS;
 };
 
+export type TOpteamaxConnectionOption = TAppConnectionOptionBase & {
+  app: AppConnection.Opteamax;
+};
+
 export type TAzureDNSConnectionOption = TAppConnectionOptionBase & {
   app: AppConnection.AzureDNS;
 };
@@ -423,6 +427,7 @@ export type TAppConnectionOption =
   | TChefConnectionOption
   | TDNSMadeEasyConnectionOption
   | TUltraDNSConnectionOption
+  | TOpteamaxConnectionOption
   | TAzureDNSConnectionOption
   | TPowerDnsConnectionOption
   | TOctopusDeployConnectionOption
@@ -495,6 +500,7 @@ export type TAppConnectionOptionMap = {
   [AppConnection.Cloudflare]: TCloudflareConnectionOption;
   [AppConnection.DNSMadeEasy]: TDNSMadeEasyConnectionOption;
   [AppConnection.UltraDNS]: TUltraDNSConnectionOption;
+  [AppConnection.Opteamax]: TOpteamaxConnectionOption;
   [AppConnection.Bitbucket]: TBitbucketConnectionOption;
   [AppConnection.Zabbix]: TZabbixConnectionOption;
   [AppConnection.Railway]: TRailwayConnectionOption;

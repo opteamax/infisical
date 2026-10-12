@@ -1,0 +1,49 @@
+---
+title: "Opteamax connection"
+sidebarTitle: "Opteamax"
+description: "Learn how to configure an Opteamax Connection for Infisical."
+---
+
+Infisical connects to [Opteamax](https://www.opteamax.de) with an API token, and uses that access to manage the DNS records in your zones.
+
+## Create an Opteamax API token
+
+<Steps>
+  <Step title="Open the API tokens page">
+    Sign in to the Opteamax customer panel and go to **API-Tokens**.
+  </Step>
+  <Step title="Create a token for Infisical">
+    Create a token that Infisical will authenticate with, and limit it to the **DNS** scope. You can then revoke its
+    access without affecting anything else.
+
+    To narrow the token further, grant it only the zones you want Infisical to manage. For ACME certificate issuance,
+    Infisical writes a TXT record at `_acme-challenge.<your-domain>` and removes it once the certificate authority has
+    validated the domain.
+  </Step>
+  <Step title="Copy the token">
+    Copy the token, which starts with `oxt_`. The panel shows it only once.
+  </Step>
+</Steps>
+
+## Setup Opteamax connection in Infisical
+
+<Steps>
+  <Step title="Navigate to App Connections">
+    In **Certificate Manager**, go to **Settings → App Connections**.
+    ![App Connections Tab](/images/app-connections/general/add-connection.png)
+  </Step>
+  <Step title="Add Connection">
+    Select the **Opteamax Connection** option from the connection options modal.
+  </Step>
+  <Step title="Input Credentials">
+    Enter the API token and select **Connect to Opteamax**. Infisical verifies the token against the Opteamax API
+    before saving the connection.
+
+    <Warning>
+      Keep this token secure and don't share it. Anyone with access to it can manage the DNS records it's scoped to.
+    </Warning>
+  </Step>
+  <Step title="Connection Created">
+    Your **Opteamax Connection** is now available for use in Certificate Manager.
+  </Step>
+</Steps>

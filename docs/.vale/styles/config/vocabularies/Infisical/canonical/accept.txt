@@ -282,6 +282,7 @@ GoDaddy
 Buypass
 Let's Encrypt
 DNS Made Easy
+Opteamax
 Certbot
 cert-manager
 win-acme

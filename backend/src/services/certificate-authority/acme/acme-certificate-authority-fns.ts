@@ -28,6 +28,7 @@ import { TAzureDnsConnection } from "@app/services/app-connection/azure-dns/azur
 import { TCloudflareConnection } from "@app/services/app-connection/cloudflare/cloudflare-connection-types";
 import { TDNSMadeEasyConnection } from "@app/services/app-connection/dns-made-easy/dns-made-easy-connection-types";
 import { TGcpConnection } from "@app/services/app-connection/gcp/gcp-connection-types";
+import { TOpteamaxConnection } from "@app/services/app-connection/opteamax/opteamax-connection-types";
 import { TPowerDnsConnection } from "@app/services/app-connection/powerdns/powerdns-connection-types";
 import { TUltraDNSConnection } from "@app/services/app-connection/ultradns/ultradns-connection-types";
 import { TCertificateBodyDALFactory } from "@app/services/certificate/certificate-body-dal";
@@ -74,6 +75,7 @@ import {
   gcpCloudDnsInsertTxtRecord,
   validateGcpCloudDnsZone
 } from "./dns-providers/gcp-cloud-dns";
+import { opteamaxDeleteTxtRecord, opteamaxInsertTxtRecord } from "./dns-providers/opteamax";
 import { powerDnsDeleteTxtRecord, powerDnsInsertTxtRecord, TPowerDnsProviderDeps } from "./dns-providers/powerdns";
 import { ultraDNSDeleteTxtRecord, ultraDNSInsertTxtRecord } from "./dns-providers/ultradns";
 
@@ -295,7 +297,8 @@ const ACME_DNS_PROVIDER_APP_CONNECTION_MAP: Record<AcmeDnsProvider, AppConnectio
   [AcmeDnsProvider.AzureDNS]: AppConnection.AzureDNS,
   [AcmeDnsProvider.PowerDns]: AppConnection.PowerDns,
   [AcmeDnsProvider.GcpCloudDns]: AppConnection.GCP,
-  [AcmeDnsProvider.UltraDNS]: AppConnection.UltraDNS
+  [AcmeDnsProvider.UltraDNS]: AppConnection.UltraDNS,
+  [AcmeDnsProvider.Opteamax]: AppConnection.Opteamax
 };
 
 const validateDnsProviderAppConnection = (provider: AcmeDnsProvider, dnsAppConnectionId: string, app: string) => {
@@ -572,6 +575,16 @@ export const executeAcmeOrder = async (
           );
           break;
         }
+        case AcmeDnsProvider.Opteamax: {
+          await opteamaxInsertTxtRecord(
+            connection as TOpteamaxConnection,
+            acmeCa.configuration.dnsProviderConfig.hostedZoneId,
+            recordName,
+            recordValue,
+            { keyStore }
+          );
+          break;
+        }
         default: {
           throw new Error(`Unsupported DNS provider: ${acmeCa.configuration.dnsProviderConfig.provider as string}`);
         }
@@ -655,6 +668,16 @@ export const executeAcmeOrder = async (
         case AcmeDnsProvider.UltraDNS: {
           await ultraDNSDeleteTxtRecord(
             connection as TUltraDNSConnection,
+            acmeCa.configuration.dnsProviderConfig.hostedZoneId,
+            recordName,
+            recordValue,
+            { keyStore }
+          );
+          break;
+        }
+        case AcmeDnsProvider.Opteamax: {
+          await opteamaxDeleteTxtRecord(
+            connection as TOpteamaxConnection,
             acmeCa.configuration.dnsProviderConfig.hostedZoneId,
             recordName,
             recordValue,

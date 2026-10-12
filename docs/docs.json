@@ -1124,6 +1124,7 @@
                   "integrations/app-connections/okta",
                   "integrations/app-connections/openai",
                   "integrations/app-connections/openrouter",
+                  "integrations/app-connections/opteamax",
                   "integrations/app-connections/oracledb",
                   "integrations/app-connections/ovh",
                   "integrations/app-connections/postgres",
@@ -2530,6 +2531,18 @@
                           "api-reference/endpoints/app-connections/ultradns/create",
                           "api-reference/endpoints/app-connections/ultradns/update",
                           "api-reference/endpoints/app-connections/ultradns/delete"
+                        ]
+                      },
+                      {
+                        "group": "Opteamax",
+                        "pages": [
+                          "api-reference/endpoints/app-connections/opteamax/list",
+                          "api-reference/endpoints/app-connections/opteamax/available",
+                          "api-reference/endpoints/app-connections/opteamax/get-by-id",
+                          "api-reference/endpoints/app-connections/opteamax/get-by-name",
+                          "api-reference/endpoints/app-connections/opteamax/create",
+                          "api-reference/endpoints/app-connections/opteamax/update",
+                          "api-reference/endpoints/app-connections/opteamax/delete"
                         ]
                       },
                       {

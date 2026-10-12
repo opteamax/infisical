@@ -87,6 +87,7 @@ import { OCIConnectionMethod } from "@app/hooks/api/appConnections/types/oci-con
 import { OnaConnectionMethod } from "@app/hooks/api/appConnections/types/ona-connection";
 import { OpenAIConnectionMethod } from "@app/hooks/api/appConnections/types/open-ai-connection";
 import { OpenRouterConnectionMethod } from "@app/hooks/api/appConnections/types/open-router-connection";
+import { OpteamaxConnectionMethod } from "@app/hooks/api/appConnections/types/opteamax-connection";
 import { OVHConnectionMethod } from "@app/hooks/api/appConnections/types/ovh-connection";
 import { PowerDnsConnectionMethod } from "@app/hooks/api/appConnections/types/powerdns-connection";
 import { RailwayConnectionMethod } from "@app/hooks/api/appConnections/types/railway-connection";
@@ -348,6 +349,12 @@ export const APP_CONNECTION_MAP: Record<
     image: "UltraDNS.png",
     category: "DNS",
     description: "Manage DNS records on UltraDNS."
+  },
+  [AppConnection.Opteamax]: {
+    name: "Opteamax",
+    image: "Opteamax.png",
+    category: "DNS",
+    description: "Manage DNS records on Opteamax."
   },
   [AppConnection.Zabbix]: {
     name: "Zabbix",
@@ -712,6 +719,7 @@ export const getAppConnectionMethodDetails = (method: TAppConnection["method"]) 
     case VercelConnectionMethod.ApiToken:
     case OnePassConnectionMethod.ApiToken:
     case CloudflareConnectionMethod.ApiToken:
+    case OpteamaxConnectionMethod.ApiToken:
     case BitbucketConnectionMethod.ApiToken:
     case ZabbixConnectionMethod.ApiToken:
     case DigitalOceanConnectionMethod.ApiToken:

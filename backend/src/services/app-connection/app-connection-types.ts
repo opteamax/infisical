@@ -372,6 +372,12 @@ import {
   TValidateOpenAIConnectionCredentialsSchema
 } from "./openai";
 import {
+  TOpteamaxConnection,
+  TOpteamaxConnectionConfig,
+  TOpteamaxConnectionInput,
+  TValidateOpteamaxConnectionCredentialsSchema
+} from "./opteamax/opteamax-connection-types";
+import {
   TOvhConnection,
   TOvhConnectionConfig,
   TOvhConnectionInput,
@@ -567,6 +573,7 @@ export type TAppConnection = { id: string; configuration?: TAppConnectionConfigu
   | TBitbucketConnection
   | TDNSMadeEasyConnection
   | TUltraDNSConnection
+  | TOpteamaxConnection
   | TAzureDnsConnection
   | TZabbixConnection
   | TRailwayConnection
@@ -667,6 +674,7 @@ export type TAppConnectionInput = { id: string } & (
   | TBitbucketConnectionInput
   | TDNSMadeEasyConnectionInput
   | TUltraDNSConnectionInput
+  | TOpteamaxConnectionInput
   | TAzureDnsConnectionInput
   | TZabbixConnectionInput
   | TRailwayConnectionInput
@@ -801,6 +809,7 @@ export type TAppConnectionConfig =
   | TBitbucketConnectionConfig
   | TDNSMadeEasyConnectionConfig
   | TUltraDNSConnectionConfig
+  | TOpteamaxConnectionConfig
   | TAzureDnsConnectionConfig
   | TZabbixConnectionConfig
   | TRailwayConnectionConfig
@@ -892,6 +901,7 @@ export type TValidateAppConnectionCredentialsSchema =
   | TValidateBitbucketConnectionCredentialsSchema
   | TValidateDNSMadeEasyConnectionCredentialsSchema
   | TValidateUltraDNSConnectionCredentialsSchema
+  | TValidateOpteamaxConnectionCredentialsSchema
   | TValidateAzureDnsConnectionCredentialsSchema
   | TValidateZabbixConnectionCredentialsSchema
   | TValidateRailwayConnectionCredentialsSchema

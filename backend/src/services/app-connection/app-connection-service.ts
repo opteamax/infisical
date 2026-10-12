@@ -169,6 +169,8 @@ import { onaConnectionService } from "./ona/ona-connection-service";
 import { ValidateOpenRouterConnectionCredentialsSchema } from "./open-router";
 import { ValidateOpenAIConnectionCredentialsSchema } from "./openai";
 import { openaiConnectionService } from "./openai/openai-connection-service";
+import { ValidateOpteamaxConnectionCredentialsSchema } from "./opteamax/opteamax-connection-schema";
+import { opteamaxConnectionService } from "./opteamax/opteamax-connection-service";
 import { ValidateOvhConnectionCredentialsSchema } from "./ovh";
 import { ValidatePostgresConnectionCredentialsSchema } from "./postgres";
 import { powerDnsConnectionService, ValidatePowerDnsConnectionCredentialsSchema } from "./powerdns";
@@ -275,6 +277,7 @@ const VALIDATE_APP_CONNECTION_CREDENTIALS_MAP: Record<AppConnection, TValidateAp
   [AppConnection.Cloudflare]: ValidateCloudflareConnectionCredentialsSchema,
   [AppConnection.DNSMadeEasy]: ValidateDNSMadeEasyConnectionCredentialsSchema,
   [AppConnection.UltraDNS]: ValidateUltraDNSConnectionCredentialsSchema,
+  [AppConnection.Opteamax]: ValidateOpteamaxConnectionCredentialsSchema,
   [AppConnection.AzureDNS]: ValidateAzureDnsConnectionCredentialsSchema,
   [AppConnection.Zabbix]: ValidateZabbixConnectionCredentialsSchema,
   [AppConnection.Railway]: ValidateRailwayConnectionCredentialsSchema,
@@ -1472,6 +1475,7 @@ export const appConnectionServiceFactory = ({
     ldap: ldapConnectionService(connectAppConnectionById, gatewayV2Service, gatewayPoolService, keyStore),
     dnsMadeEasy: dnsMadeEasyConnectionService(connectAppConnectionById),
     ultraDNS: ultraDNSConnectionService(connectAppConnectionById),
+    opteamax: opteamaxConnectionService(connectAppConnectionById),
     azureDns: azureDnsConnectionService(connectAppConnectionById),
     zabbix: zabbixConnectionService(connectAppConnectionById),
     railway: railwayConnectionService(connectAppConnectionById),

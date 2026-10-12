@@ -240,6 +240,11 @@ import {
   validateOpenRouterConnectionCredentials
 } from "./open-router";
 import { getOpenAIConnectionListItem, OpenAIConnectionMethod, validateOpenAIConnectionCredentials } from "./openai";
+import { OpteamaxConnectionMethod } from "./opteamax/opteamax-connection-enum";
+import {
+  getOpteamaxConnectionListItem,
+  validateOpteamaxConnectionCredentials
+} from "./opteamax/opteamax-connection-fns";
 import { getOvhConnectionListItem, OVHConnectionMethod, validateOvhConnectionCredentials } from "./ovh";
 import { getPostgresConnectionListItem, PostgresConnectionMethod } from "./postgres";
 import {
@@ -342,6 +347,7 @@ const PKI_APP_CONNECTIONS = [
   AppConnection.Chef,
   AppConnection.DNSMadeEasy,
   AppConnection.UltraDNS,
+  AppConnection.Opteamax,
   AppConnection.AzureDNS,
   AppConnection.PowerDns,
   AppConnection.Venafi,
@@ -427,6 +433,7 @@ export const listAppConnectionOptions = (projectType?: ProjectType) => {
     getCloudflareConnectionListItem(),
     getDNSMadeEasyConnectionListItem(),
     getUltraDNSConnectionListItem(),
+    getOpteamaxConnectionListItem(),
     getAzureDnsConnectionListItem(),
     getZabbixConnectionListItem(),
     getRailwayConnectionListItem(),
@@ -656,6 +663,7 @@ export const validateAppConnectionCredentials = async (
     [AppConnection.Cloudflare]: validateCloudflareConnectionCredentials as TAppConnectionCredentialsValidator,
     [AppConnection.DNSMadeEasy]: validateDNSMadeEasyConnectionCredentials as TAppConnectionCredentialsValidator,
     [AppConnection.UltraDNS]: validateUltraDNSConnectionCredentials as TAppConnectionCredentialsValidator,
+    [AppConnection.Opteamax]: validateOpteamaxConnectionCredentials as TAppConnectionCredentialsValidator,
     [AppConnection.AzureDNS]: validateAzureDnsConnectionCredentials as TAppConnectionCredentialsValidator,
     [AppConnection.Zabbix]: validateZabbixConnectionCredentials as TAppConnectionCredentialsValidator,
     [AppConnection.Railway]: validateRailwayConnectionCredentials as TAppConnectionCredentialsValidator,
@@ -759,6 +767,7 @@ export const getAppConnectionMethodName = (method: TAppConnection["method"]) => 
     case TerraformCloudConnectionMethod.ApiToken:
     case VercelConnectionMethod.ApiToken:
     case OnePassConnectionMethod.ApiToken:
+    case OpteamaxConnectionMethod.ApiToken:
     case CloudflareConnectionMethod.APIToken:
     case BitbucketConnectionMethod.ApiToken:
     case ZabbixConnectionMethod.ApiToken:
@@ -946,6 +955,7 @@ export const TRANSITION_CONNECTION_CREDENTIALS_TO_PLATFORM: Record<
   [AppConnection.Cloudflare]: platformManagedCredentialsNotSupported,
   [AppConnection.DNSMadeEasy]: platformManagedCredentialsNotSupported,
   [AppConnection.UltraDNS]: platformManagedCredentialsNotSupported,
+  [AppConnection.Opteamax]: platformManagedCredentialsNotSupported,
   [AppConnection.AzureDNS]: platformManagedCredentialsNotSupported,
   [AppConnection.Zabbix]: platformManagedCredentialsNotSupported,
   [AppConnection.Railway]: platformManagedCredentialsNotSupported,

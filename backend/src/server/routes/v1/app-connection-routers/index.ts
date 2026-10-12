@@ -63,6 +63,7 @@ import { registerOktaConnectionRouter } from "./okta-connection-router";
 import { registerOnaConnectionRouter } from "./ona-connection-router";
 import { registerOpenRouterConnectionRouter } from "./open-router-connection-router";
 import { registerOpenAIConnectionRouter } from "./openai-connection-router";
+import { registerOpteamaxConnectionRouter } from "./opteamax-connection-router";
 import { registerOvhConnectionRouter } from "./ovh-connection-router";
 import { registerPostgresConnectionRouter } from "./postgres-connection-router";
 import { registerPowerDnsConnectionRouter } from "./powerdns-connection-router";
@@ -131,6 +132,7 @@ export const APP_CONNECTION_REGISTER_ROUTER_MAP: Record<AppConnection, (server: 
     [AppConnection.Cloudflare]: registerCloudflareConnectionRouter,
     [AppConnection.DNSMadeEasy]: registerDNSMadeEasyConnectionRouter,
     [AppConnection.UltraDNS]: registerUltraDNSConnectionRouter,
+    [AppConnection.Opteamax]: registerOpteamaxConnectionRouter,
     [AppConnection.Bitbucket]: registerBitbucketConnectionRouter,
     [AppConnection.Zabbix]: registerZabbixConnectionRouter,
     [AppConnection.Railway]: registerRailwayConnectionRouter,

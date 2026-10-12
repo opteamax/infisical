@@ -262,6 +262,13 @@ export const appConnections = [
     category: "Networking & DNS",
   },
   {
+    name: "Opteamax",
+    slug: "opteamax",
+    path: "/integrations/app-connections/opteamax",
+    description: "Learn how to connect Infisical to Opteamax for ACME DNS validation.",
+    category: "Networking & DNS",
+  },
+  {
     name: "PowerDNS",
     slug: "powerdns",
     path: "/integrations/app-connections/powerdns",
